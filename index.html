@@ -1,52 +1,87 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Painel Automático de Multiplicação</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Tabuadas</title>
     <style>
-        .tabuada {
-            border: 10px solid #cb1460;
-            padding: 10px;
-            margin: 10px;
-            display: inline-block;
+        body{
+            font-family: arial;
+            border-color: #747474;
+            text-align: center;
+            margin: 20px;
+        }
+
+        button{
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #004099;
+            color: white;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        button:hover{
+            background-color: #4caeff;
+        }
+
+        #resultado{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .card{
+            background-color: #8266ff;
+            padding: 15px;
             width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .card h3{ 
+            margin-top: 0;
+            text-align: center;
+            color: #004099;
         }
     </style>
 </head>
 <body>
+    <h1>Painel de Tabuadas</h1>
 
-    <h2>Painel de Tabuadas (1 a 10)</h2>
+    <button onclick="gerarTabuadas()">Gerar Tabuadas</button>
+
     <div id="resultado"></div>
 
     <script>
-        // Variável acumuladora
-        let resultadoHTML = "";
+        function gerarTabuadas() {
+            let painel = document.getElementById("resultado");
+            let conteudo = ""; 
 
-        // Contador do laço externo
-        let numero = 1;
+            let i = 1;
 
-        while (numero <= 10) {
+            while (i <= 10) {
+                conteudo += `<div class="card">`;
+                conteudo += `<h3>Tabuada do ${i}</h3>`;
 
-            resultadoHTML += "<div class='tabuada'>";
-            resultadoHTML += "<h3>Tabuada do " + numero + "</h3>";
+                let j = 1;
 
-            // Contador do laço interno
-            let multiplicador = 1;
+                while (j <= 10) {
+                    let resultado = i * j;
+                    conteudo += `${i} x ${j} = ${resultado}<br>`;
+                    j++;
+                }
 
-            while (multiplicador <= 10) {
-                resultadoHTML += numero + " x " + multiplicador + " = " 
-                                + (numero * multiplicador) + "<br>";
-
-                multiplicador++; // incremento interno
+                conteudo += `</div>`;
+                i++;
             }
 
-            resultadoHTML += "</div>";
-
-            numero++; // incremento externo
+            painel.innerHTML = conteudo;
         }
-
-        document.getElementById("resultado").innerHTML = resultadoHTML;
     </script>
-
 </body>
 </html>
