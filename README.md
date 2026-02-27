@@ -1,0 +1,1 @@
+# Painel-Autom-tico-de-Multiplica-o-Sistema-Educacional-
